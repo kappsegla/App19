@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:App1"
+             xmlns:viewModels="clr-namespace:App1.ViewModels;assembly=App1"
+             x:Class="App1.Views.MainPage"
+            >
+    <ContentPage.BindingContext>
+        <viewModels:MainPageViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout>
+            <!-- Place new controls here -->
+            <Label Text="{Binding Text }"
+                   HorizontalOptions="Center"
+                   VerticalOptions="CenterAndExpand"
+                   x:Name="Label1" />
+            <Slider Value="{Binding Source={x:Reference Label1}, Path=Rotation}"
+                    Maximum="360" x:Name="Slider1"
+                    IsEnabled="{Binding Source={x:Reference CheckBox}, Path=IsChecked}"/>
+            <Editor Text="{Binding Text}"></Editor>
+            <Editor Text="{Binding Text}"></Editor>
+            <CheckBox IsChecked="True"
+                      HorizontalOptions="Center"
+                      VerticalOptions="Center" 
+                      x:Name="CheckBox"/>
+            <Button Text="Do something" Command="{Binding ButtonAction }"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
