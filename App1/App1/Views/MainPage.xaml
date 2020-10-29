@@ -4,10 +4,11 @@
              xmlns:local="clr-namespace:App1"
              xmlns:viewModels="clr-namespace:App1.ViewModels;assembly=App1"
              x:Class="App1.Views.MainPage"
+             x:DataType="viewModels:MainPageViewModel"
             >
-    <ContentPage.BindingContext>
-        <viewModels:MainPageViewModel/>
-    </ContentPage.BindingContext>
+    <!-- <ContentPage.BindingContext> -->
+    <!--     <viewModels:MainPageViewModel/> -->
+    <!-- </ContentPage.BindingContext> -->
     <ContentPage.Content>
         <StackLayout>
             <!-- Place new controls here -->

@@ -1,4 +1,5 @@
 ﻿using App1.ViewModels;
+using Autofac;
 using Xamarin.Forms;
 
 namespace App1.Views
@@ -11,8 +12,7 @@ namespace App1.Views
             InitializeComponent();
           //  Label1.BindingContext = Slider1;
           //  Label1.SetBinding(VisualElement.RotationProperty, "Value");
-          //this.BindingContext = new MainPageViewModel();
-
+          this.BindingContext = AppContainer.Container.Resolve<MainPageViewModel>();
         }
     }
 }

@@ -10,9 +10,13 @@ namespace App1.ViewModels
     public class MainPageViewModel : BaseViewModel
     {
 
-        public MainPageViewModel()
-        {
+        private IHelloService _helloService;
 
+        public MainPageViewModel(IHelloService helloService)
+        {
+            _helloService = helloService;
+            text = _helloService.GetMessage();
+            
             ButtonAction = new Command(execute: () =>
             {
                 Text = "";
