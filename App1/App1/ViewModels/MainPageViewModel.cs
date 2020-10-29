@@ -2,6 +2,7 @@
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using App1.Annotations;
+using App1.Models;
 using App1.Services;
 using Xamarin.Forms;
 
@@ -9,25 +10,24 @@ namespace App1.ViewModels
 {
     public class MainPageViewModel : BaseViewModel
     {
-
         private IHelloService _helloService;
+        private CatFactApi _catFactApi;
 
-        public MainPageViewModel(IHelloService helloService)
+        public MainPageViewModel(IHelloService helloService, CatFactApi catFactApi)
         {
             _helloService = helloService;
+            _catFactApi = catFactApi;
             text = _helloService.GetMessage();
-            
-            ButtonAction = new Command(execute: () =>
+
+            ButtonAction = new Command(execute: async () =>
             {
-                Text = "";
-            },canExecute: () =>
-            {
-                return !text.Equals("");
-            });
+                var fact = await _catFactApi.GetRandomCatFact();
+                Text = fact.Text;
+            }, canExecute: () => { return !text.Equals(""); });
         }
 
-        private string text = "Hej på dig!";
-        
+        private string text = "";
+
         public string Text
         {
             get => text;
@@ -39,12 +39,12 @@ namespace App1.ViewModels
                 RefreshCanExecute();
             }
         }
-        
+
         public ICommand ButtonAction { private set; get; }
-        
+
         private void RefreshCanExecute()
         {
-            ((Command)ButtonAction).ChangeCanExecute();
+            ((Command) ButtonAction).ChangeCanExecute();
             //Add more ICommands here
         }
     }

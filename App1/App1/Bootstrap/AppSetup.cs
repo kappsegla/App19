@@ -1,4 +1,6 @@
-﻿using App1.ViewModels;
+﻿using System.Net.Http;
+using App1.Models;
+using App1.ViewModels;
 using Autofac;
 
 namespace App1.Bootstrap
@@ -15,6 +17,8 @@ namespace App1.Bootstrap
         protected virtual void RegisterDependencies(ContainerBuilder cb)
         {
             cb.RegisterType<MainPageViewModel>().SingleInstance();
+            cb.RegisterType<CatFactApi>().SingleInstance();
+            cb.RegisterType<HttpClient>().SingleInstance();
         }
     }
 }
