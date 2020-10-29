@@ -2,6 +2,7 @@
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using App1.Annotations;
+using App1.Services;
 using Xamarin.Forms;
 
 namespace App1.ViewModels
@@ -11,6 +12,7 @@ namespace App1.ViewModels
 
         public MainPageViewModel()
         {
+
             ButtonAction = new Command(execute: () =>
             {
                 Text = "";
