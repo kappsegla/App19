@@ -1,16 +1,19 @@
-﻿using System.ComponentModel;
-using System.Runtime.CompilerServices;
-using System.Windows.Input;
-using App1.Annotations;
+﻿using System.Windows.Input;
+using App1.Services;
 using Xamarin.Forms;
 
 namespace App1.ViewModels
 {
-    public class MainPageViewModel : BaseViewModel
+    public class MainPageViewModel : BaseViewModel, IViewModel
     {
 
-        public MainPageViewModel()
+
+        private IHelloFormsService _formsService;
+        public MainPageViewModel(IHelloFormsService formsService)
         {
+            _formsService = formsService;
+            text = _formsService.GetHelloFormsText();
+            
             ButtonAction = new Command(execute: () =>
             {
                 Text = "";
@@ -18,9 +21,11 @@ namespace App1.ViewModels
             {
                 return !text.Equals("");
             });
+            OnFavoriteSwipeItemInvoked = new Command(() => {});
+            OnDeleteSwipeItemInvoked = new Command(() => {});
         }
-
-        private string text = "Hej på dig!";
+        
+        private string text = "";
         
         public string Text
         {
@@ -35,10 +40,15 @@ namespace App1.ViewModels
         }
         
         public ICommand ButtonAction { private set; get; }
+        public ICommand OnFavoriteSwipeItemInvoked { private set; get; } 
+        public ICommand OnDeleteSwipeItemInvoked { private set; get; }
+        
         
         private void RefreshCanExecute()
         {
             ((Command)ButtonAction).ChangeCanExecute();
+            ((Command)OnFavoriteSwipeItemInvoked).ChangeCanExecute();
+            ((Command)OnDeleteSwipeItemInvoked).ChangeCanExecute();
             //Add more ICommands here
         }
     }

@@ -9,10 +9,12 @@ namespace App1
 {
     public partial class App : Application
     {
-        public App()
+        public App(AppSetup setup)
         {
             InitializeComponent();
-
+            
+            AppContainer.Container = setup.CreateContainer();
+            
             MainPage = new MainPage();
         }
 

@@ -3,12 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:App1"
              xmlns:viewModels="clr-namespace:App1.ViewModels;assembly=App1"
-             x:Class="App1.Views.MainPage"
-            >
-    <ContentPage.BindingContext>
-        <viewModels:MainPageViewModel/>
-    </ContentPage.BindingContext>
-    <ContentPage.Content>
+             x:Class="App1.Views.MainPage" x:DataType="viewModels:MainPageViewModel">
+    <!-- <ContentPage.BindingContext> -->
+    <!--     <viewModels:MainPageViewModel/> -->
+    <!-- </ContentPage.BindingContext> -->
+
         <StackLayout>
             <!-- Place new controls here -->
             <Label Text="{Binding Text }"
@@ -22,9 +21,8 @@
             <Editor Text="{Binding Text}"></Editor>
             <CheckBox IsChecked="True"
                       HorizontalOptions="Center"
-                      VerticalOptions="Center" 
+                      VerticalOptions="Center"
                       x:Name="CheckBox"/>
             <Button Text="Do something" Command="{Binding ButtonAction }"/>
         </StackLayout>
-    </ContentPage.Content>
 </ContentPage>
