@@ -5,6 +5,7 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using App1.Android.Bootstrap;
 
 namespace App1.Android
 {
@@ -19,7 +20,7 @@ namespace App1.Android
 
             base.OnCreate(savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
-            LoadApplication(new App());
+            LoadApplication(new App(new AndroidSetup()));
         }
     }
 }

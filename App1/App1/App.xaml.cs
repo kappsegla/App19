@@ -1,5 +1,7 @@
 ﻿using System;
+using App1.Bootstrap;
 using App1.Views;
+using Autofac;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -9,9 +11,11 @@ namespace App1
 {
     public partial class App : Application
     {
-        public App()
+       public App(AppSetup setup)
         {
             InitializeComponent();
+        
+            AppContainer.Container = setup.CreateContainer();
 
             MainPage = new MainPage();
         }
