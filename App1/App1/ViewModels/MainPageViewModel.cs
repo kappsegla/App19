@@ -17,30 +17,45 @@ namespace App1.ViewModels
         {
             _helloService = helloService;
             _catFactApi = catFactApi;
-            text = _helloService.GetMessage();
+            _text = _helloService.GetMessage();
 
             ButtonAction = new Command(execute: async () =>
             {
                 var fact = await _catFactApi.GetRandomCatFact();
                 Text = fact.Text;
-            }, canExecute: () => { return !text.Equals(""); });
+            }, canExecute: () => !string.IsNullOrEmpty(_text));
         }
 
-        private string text = "";
+        private string _text;
 
         public string Text
         {
-            get => text;
+            get => _text;
             set
             {
-                if (text == value) return;
-                text = value;
+                if (_text.Equals(value)) return;
+                _text = value;
                 OnPropertyChanged();
                 RefreshCanExecute();
             }
         }
 
         public ICommand ButtonAction { private set; get; }
+
+
+        private bool _busy;
+
+        public bool Busy
+        {
+            get => _busy;
+            set
+            {
+                if (_busy == value) return;
+                _busy = value;
+                OnPropertyChanged();
+                RefreshCanExecute();
+            }
+        }
 
         private void RefreshCanExecute()
         {

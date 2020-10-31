@@ -11,6 +11,8 @@
     <!-- </ContentPage.BindingContext> -->
     <ContentPage.Content>
         <StackLayout>
+            <ActivityIndicator Color="Orange" IsRunning="{Binding Busy}" HorizontalOptions="Center"
+                               VerticalOptions="CenterAndExpand"/>
             <!-- Place new controls here -->
             <Label Text="{Binding Text }"
                    HorizontalOptions="Center"
