@@ -21,9 +21,11 @@ namespace App1.ViewModels
 
             ButtonAction = new Command(execute: async () =>
             {
+                IsBusy = true;
                 var fact = await _catFactApi.GetRandomCatFact();
                 Text = fact.Text;
-            }, canExecute: () => !string.IsNullOrEmpty(_text));
+                IsBusy = false;
+            }, canExecute: () => !IsBusy);
         }
 
         private string _text;
@@ -42,20 +44,6 @@ namespace App1.ViewModels
 
         public ICommand ButtonAction { private set; get; }
 
-
-        private bool _busy;
-
-        public bool Busy
-        {
-            get => _busy;
-            set
-            {
-                if (_busy == value) return;
-                _busy = value;
-                OnPropertyChanged();
-                RefreshCanExecute();
-            }
-        }
 
         private void RefreshCanExecute()
         {

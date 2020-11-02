@@ -17,7 +17,10 @@ namespace App1
         
             AppContainer.Container = setup.CreateContainer();
 
-            MainPage = new MainPage();
+            //MainPage = new MainPage();
+            //MainPage = new ItemsPage();
+            MainPage = new NavigationPage (new ItemsPage());
+            //MainPage = new AppShell();
         }
 
         protected override void OnStart()

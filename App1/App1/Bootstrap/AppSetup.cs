@@ -17,6 +17,8 @@ namespace App1.Bootstrap
         protected virtual void RegisterDependencies(ContainerBuilder cb)
         {
             cb.RegisterType<MainPageViewModel>().SingleInstance();
+            cb.RegisterType<ItemsViewModel>().SingleInstance();
+            cb.RegisterType<ItemDetailViewModel>().SingleInstance();
             cb.RegisterType<CatFactApi>().SingleInstance();
             cb.RegisterType<HttpClient>().SingleInstance();
         }

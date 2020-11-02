@@ -13,6 +13,7 @@ namespace App1.Views
           //  Label1.BindingContext = Slider1;
           //  Label1.SetBinding(VisualElement.RotationProperty, "Value");
           this.BindingContext = AppContainer.Container.Resolve<MainPageViewModel>();
+          
         }
     }
 }
