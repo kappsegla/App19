@@ -6,6 +6,5 @@
        x:Class="App1.AppShell"
        Title="ShellApp"
        FlyoutBehavior="Disabled">
-
     <ShellContent Route="cats" Title="Cats" ContentTemplate="{DataTemplate views:ItemsPage}" />
 </Shell>

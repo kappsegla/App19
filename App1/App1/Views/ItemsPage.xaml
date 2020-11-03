@@ -23,19 +23,19 @@
             <CollectionView x:Name="ItemsListView"
                             ItemsSource="{Binding Items}"
                             SelectionMode="None">
-                <CollectionView.ItemTemplate>
+                            <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <Grid Padding="10" Margin="12" x:DataType="models:CatFact">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="1*" />
                                 <RowDefinition Height="3*" />
                             </Grid.RowDefinitions>
-
+                
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
-
+                
                             <Grid.GestureRecognizers>
                                 <TapGestureRecognizer
                                     NumberOfTapsRequired="1"
@@ -43,19 +43,19 @@
                                             Path=ItemTapped}"
                                     CommandParameter="{Binding Source={RelativeSource  AncestorType={x:Type models:CatFact}}, Path=.}" />
                             </Grid.GestureRecognizers>
-
+                
                             <Image Source="https://cataas.com/cat"
                                    Grid.RowSpan="2"
                                    Aspect="AspectFill"
                                    WidthRequest="100"
                                    HeightRequest="150" />
-
+                
                             <Label Grid.Row="0" Grid.Column="1"
                                    VerticalOptions="Center"
                                    Style="{StaticResource HeadingStyle}"
                                    Text="Fact" />
-
-
+                
+                
                             <Label Text="{Binding Text}"
                                    Grid.Row="1"
                                    Grid.Column="1"

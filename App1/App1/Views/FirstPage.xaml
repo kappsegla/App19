@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:App1.ViewModels;assembly=App1"
+             x:Class="App1.Views.FirstPage"
+             x:DataType="viewModels:FirstPageViewModel"
+             Title="Navigation Example">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="First Page"
+                   VerticalOptions="CenterAndExpand"
+                   HorizontalOptions="CenterAndExpand" />
+            <Button Text="Navigate To Second Page" Command="{Binding DoNavigation }"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

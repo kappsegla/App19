@@ -1,10 +1,12 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using App1.Models;
 using App1.Utils;
 using App1.Views;
+using Autofac;
 using Xamarin.Forms;
 
 namespace App1.ViewModels
@@ -14,7 +16,7 @@ namespace App1.ViewModels
         private CatFactApi _factApi;
 
         private CatFact _selectedItem;
-
+        
         public ObservableCollection<CatFact> Items { get; }
 
         public ICommand LoadItemsCommand { get; }
@@ -36,10 +38,10 @@ namespace App1.ViewModels
                 return;
 
             //Navigate
-             var secondPage = new ItemDetailPage(fact.Text);
+             var secondPage = new ItemDetailPage(fact);
              await Application.Current.MainPage.Navigation.PushAsync(secondPage);
             //Shell
-            // await Shell.Current.GoToAsync($"catdetail?text={fact.Text}");
+            //await Shell.Current.GoToAsync($"catdetail?text={fact.Text}");
         }
 
         public CatFact SelectedItem
@@ -53,7 +55,8 @@ namespace App1.ViewModels
             }
         }
 
-
+        public ICommand SelectionChanged { get; }
+        
         private async Task ExecuteLoadItemsCommand()
         {
             IsBusy = true;
@@ -61,8 +64,7 @@ namespace App1.ViewModels
             Items.Clear();
             foreach (var item in items.Take(20))
             {
-                // ((RangeObservableCollection<CatFact>)Items).AddRange(items.Take(20));
-                Items.Add(item);
+                 Items.Add(item);
             }
 
             IsBusy = false;
