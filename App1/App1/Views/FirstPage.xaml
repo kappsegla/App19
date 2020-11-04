@@ -7,11 +7,27 @@
              x:DataType="viewModels:FirstPageViewModel"
              Title="Navigation Example">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="First Page"
-                   VerticalOptions="CenterAndExpand"
-                   HorizontalOptions="CenterAndExpand" />
-            <Button Text="Navigate To Second Page" Command="{Binding DoNavigation }"/>
-        </StackLayout>
+        <Grid>
+            <BoxView x:Name="BdGradient" Scale="4" AnchorX="1" AnchorY="0">
+                <BoxView.Background>
+                    <LinearGradientBrush>
+                        <GradientStop Color="#23D5AB" Offset="0.1"/>
+                        <GradientStop Color="#23A605" Offset="0.2" />
+                        <GradientStop Color="#E73C7E" Offset="0.3" />
+                        <GradientStop Color="#EE7752" Offset="0.4" />
+                        <GradientStop Color="#EE7752" Offset="0.5" />
+                        <GradientStop Color="#E73C7E" Offset="0.6" />
+                        <GradientStop Color="#23A605" Offset="0.7" />
+                        <GradientStop Color="#23D5AB" Offset="1.0"/>
+                    </LinearGradientBrush>
+                </BoxView.Background>
+            </BoxView>
+            <Frame WidthRequest="250" BorderColor="White" BackgroundColor="Transparent"
+                   VerticalOptions="Center" HorizontalOptions="Center" >
+                <Label Text="{Binding Level}" TextColor="White"
+                       HorizontalTextAlignment="Center" FontSize="30"/>
+              </Frame>
+            <!-- <Button Text="Navigate To Second Page" Command="{Binding DoNavigation }"/> -->
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

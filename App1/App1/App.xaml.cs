@@ -14,12 +14,12 @@ namespace App1
        public App(AppSetup setup)
         {
             InitializeComponent();
-        
+            Device.SetFlags(new[] { "Brush_Experimental" });  
             AppContainer.Container = setup.CreateContainer();
 
             //MainPage = new MainPage();
-            MainPage = new NavigationPage(new ItemsPage());
-            //MainPage = new NavigationPage (new FirstPage());
+            //MainPage = new NavigationPage(new ItemsPage());
+            MainPage = new NavigationPage (new FirstPage());
             //MainPage = new AppShell();
         }
 
