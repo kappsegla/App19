@@ -1,6 +1,7 @@
 ﻿using System.Net.Http;
 using App1.Models;
 using App1.Services;
+using App1.Utils;
 using App1.ViewModels;
 using Autofac;
 using Xamarin.Forms;
@@ -25,6 +26,7 @@ namespace App1.Bootstrap
             cb.RegisterType<CatFactApi>().SingleInstance();
             cb.RegisterType<HttpClient>().SingleInstance();
             cb.RegisterType<NavigationService>().As<INavigationService>().SingleInstance();
+            cb.RegisterType<XamarinEssentials>().As<IXamarinEssentials>().SingleInstance();
         }
     }
 }

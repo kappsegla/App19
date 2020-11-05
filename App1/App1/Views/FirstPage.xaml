@@ -3,15 +3,35 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:App1.ViewModels;assembly=App1"
+             xmlns:valueConverters="clr-namespace:App1.ValueConverters;assembly=App1"
              x:Class="App1.Views.FirstPage"
              x:DataType="viewModels:FirstPageViewModel"
              Title="Navigation Example">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <valueConverters:StringToColorConverter x:Key="StringToColorConverter"/> 
+            <valueConverters:NullOrEmptyToVisibilityConverter x:Key="NullOrEmptyToVisibilityConverter"/> 
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="First Page"
-                   VerticalOptions="CenterAndExpand"
-                   HorizontalOptions="CenterAndExpand" />
-            <Button Text="Navigate To Second Page" Command="{Binding DoNavigation }"/>
+        <StackLayout VerticalOptions="StartAndExpand">
+            <Entry Placeholder="Insert your name" 
+                   BackgroundColor="{Binding Name, Converter={StaticResource StringToColorConverter}}"
+                   Text="{Binding Name}">
+                <!-- <Entry.Triggers> -->
+                <!--     <DataTrigger TargetType="Entry" -->
+                <!--              Binding="{Binding Name.Length}" -->
+                <!--              Value="5"> -->
+                <!--         <Setter Property="BackgroundColor" Value="LightBlue" /> -->
+                <!--         <Setter Property="TextColor" Value="Green"/> -->
+                <!--     </DataTrigger> -->
+                <!-- </Entry.Triggers> -->
+            </Entry>
+            <Label Text="{Binding Name, StringFormat='Welcome {0}'}"
+                   IsVisible="{Binding Name,
+                               Converter={StaticResource NullOrEmptyToVisibilityConverter}}" />
+            <Label Text="{Binding BatteryLevel, StringFormat='Charge: {0}'}"/>
+            <Button Text="Navigate To Second Page" Command="{Binding DoNavigation }" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
