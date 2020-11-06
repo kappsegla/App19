@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using App1.Services;
+using App1.Utils;
 using App1.ViewModels;
 using Autofac;
 using Xamarin.Forms;

@@ -3,6 +3,8 @@ using App1.Utils;
 using App1.ViewModels;
 using App1.Views;
 using NUnit.Framework;
+using Moq;
+using Xamarin.Forms;
 
 namespace TestProject1
 {
@@ -14,6 +16,35 @@ namespace TestProject1
             
         }
 
+
+        [Test]
+        public void BatteryLevelIsReadWhenInitializingViewModel()
+        {
+            var nav = Mock.Of<INavigationService>();
+            var mock = new Mock<IXamarinEssentials>();
+            mock.Setup(e => e.BatteryLevel).Returns(0.8);
+            var unit = new FirstPageViewModel( nav, mock.Object);
+
+            Assert.AreEqual(0.8, unit.BatteryLevel);
+        }
+        
+        
+        [Test]
+        public void DoNavigationNavigatesToSecondPageUsingMoq()
+        {
+            //Arrange
+            var mock = new Mock<INavigationService>();
+            INavigationService navService = mock.Object;
+            IXamarinEssentials essentials = Mock.Of<IXamarinEssentials>();
+            
+            var unit = new FirstPageViewModel( navService, essentials);
+            //Act
+            unit.DoNavigation.Execute(null);
+            //Assert
+            mock.Verify(s => s.PushAsync(It.IsAny<Page>()));
+        }
+        
+        
         [Test]
         public void DoNavigationNavigatesToSecondPage()
         {
