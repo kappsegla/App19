@@ -23,7 +23,14 @@ namespace App1.ViewModels
             {
                 IsBusy = true;
                 var fact = await _catFactApi.GetRandomCatFact();
-                Text = fact.Text;
+                
+                if( fact.Successful.Item1 )
+                    Text = fact.Successful.Item2.Text;
+                else
+                {
+                    var error = fact.Error.Item2;
+                    
+                }
                 IsBusy = false;
             }, canExecute: () => !IsBusy);
         }

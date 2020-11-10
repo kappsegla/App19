@@ -4,7 +4,7 @@ using Xamarin.Forms.Xaml;
 
 namespace App1
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
+   // [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AppShell : Shell
     {
         public AppShell()

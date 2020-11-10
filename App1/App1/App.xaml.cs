@@ -5,7 +5,7 @@ using Autofac;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-[assembly: XamlCompilation(XamlCompilationOptions.Compile)]
+//[assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 
 namespace App1
 {
@@ -14,11 +14,15 @@ namespace App1
        public App(AppSetup setup)
         {
             InitializeComponent();
-        
-            AppContainer.Container = setup.CreateContainer();
-
+            // AppDomain.CurrentDomain.UnhandledException += (sender, args) => {
+            //     System.Exception ex = (System.Exception)args.ExceptionObject;
+            //     Console.WriteLine(ex);
+            // };
+           AppContainer.Container = setup.CreateContainer();
+            
             //MainPage = new MainPage();
-            MainPage = new NavigationPage(new ItemsPage());
+            //MainPage = new NavigationPage(new ItemsPage());
+            MainPage = new ValidationPage();
             //MainPage = new NavigationPage (new FirstPage());
             //MainPage = new AppShell();
         }

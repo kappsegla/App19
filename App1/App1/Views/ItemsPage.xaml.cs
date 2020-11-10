@@ -17,7 +17,6 @@ namespace App1.Views
         {
             InitializeComponent();
             BindingContext = AppContainer.Container.Resolve<ItemsViewModel>();
-            
         }
     }
 }

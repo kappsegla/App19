@@ -24,7 +24,6 @@ namespace App1.iOS
         {
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App(new IOSSetup()));
-
             return base.FinishedLaunching(app, options);
         }
     }

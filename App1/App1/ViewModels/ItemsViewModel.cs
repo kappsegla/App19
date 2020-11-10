@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -30,13 +31,14 @@ namespace App1.ViewModels
             Items = new ObservableCollection<CatFact>();
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
             ItemTapped = new Command<CatFact>(OnItemSelected);
+            SelectionChanged = new Command(()=> OnItemSelected(SelectedItem));
         }
 
         private async void OnItemSelected(CatFact fact)
         {
             if (fact == null)
                 return;
-
+            
             //Navigate
              var secondPage = new ItemDetailPage(fact);
              await Application.Current.MainPage.Navigation.PushAsync(secondPage);
@@ -49,8 +51,7 @@ namespace App1.ViewModels
             get => _selectedItem;
             set
             {
-                if (_selectedItem.Equals(value)) return;
-                _selectedItem = value;
+               _selectedItem = value;
                 OnPropertyChanged();
             }
         }

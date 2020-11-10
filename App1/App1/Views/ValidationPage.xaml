@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:App1.ViewModels;assembly=App1"
+             xmlns:validation="clr-namespace:App1.Validation;assembly=App1"
+             xmlns:bindings="clr-namespace:App1.Bindings;assembly=App1"
+             x:Class="App1.Views.ValidationPage"
+             x:DataType="viewModels:ValidationPageViewModel"
+             Title="Navigation Example">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <validation:FirstValidationErrorConverter x:Key="FirstValidationErrorConverter" />
+
+            <Color x:Key="ErrorColor">#ff5252</Color>
+            <Color x:Key="GreenColor">#00A69C</Color>
+
+            <OnPlatform x:Key="LittleSize"
+                        x:TypeArguments="x:Double">
+                <On Platform="iOS" Value="11" />
+                <On Platform="Android" Value="12" />
+            </OnPlatform>
+
+            <!-- Implicit style -->
+            <Style TargetType="Entry">
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="TextColor" Value="Gray" />
+            </Style>
+            <!-- EXPLICIT STYLES -->
+            <Style x:Key="HeaderLabelStyle"
+                   TargetType="{x:Type Label}">
+                <Setter Property="FontFamily"
+                        Value="Times Roman" />
+                <Setter Property="FontSize"
+                        Value="{StaticResource LittleSize}" />
+                <Setter Property="TextColor"
+                        Value="{StaticResource GreenColor}" />
+                <Setter Property="HorizontalOptions"
+                        Value="Start" />
+            </Style>
+            <Style x:Key="ValidationErrorLabelStyle"
+                   TargetType="{x:Type Label}">
+                <Setter Property="TextColor"
+                        Value="{StaticResource ErrorColor}" />
+                <Setter Property="FontSize"
+                        Value="{StaticResource LittleSize}" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout Margin="20" Spacing="0">
+            <Label
+                Text="User name"
+                Style="{StaticResource HeaderLabelStyle}" />
+            <Entry Text="{Binding UserName.Value, Mode=TwoWay}">
+                <Entry.Behaviors>
+                    <bindings:EventToCommandBehavior
+                        EventName="TextChanged"
+                        Command="{Binding ValidateUserNameCommand}" />
+                </Entry.Behaviors>
+                <Entry.Triggers>
+                    <DataTrigger
+                        TargetType="Entry"
+                        Binding="{Binding UserName.IsValid}"
+                        Value="False">
+                        <Setter Property="BackgroundColor"
+                                Value="{StaticResource ErrorColor}" />
+                    </DataTrigger>
+                </Entry.Triggers>
+            </Entry>
+            <Label Text="{Binding UserName.Errors, Converter={StaticResource FirstValidationErrorConverter}}"
+                   Style="{StaticResource ValidationErrorLabelStyle}" />
+            <Button Text="Validate Input" Command="{Binding ValidateInput }" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

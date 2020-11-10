@@ -18,14 +18,14 @@
             <Entry Placeholder="Insert your name" 
                    BackgroundColor="{Binding Name, Converter={StaticResource StringToColorConverter}}"
                    Text="{Binding Name}">
-                <!-- <Entry.Triggers> -->
-                <!--     <DataTrigger TargetType="Entry" -->
-                <!--              Binding="{Binding Name.Length}" -->
-                <!--              Value="5"> -->
-                <!--         <Setter Property="BackgroundColor" Value="LightBlue" /> -->
-                <!--         <Setter Property="TextColor" Value="Green"/> -->
-                <!--     </DataTrigger> -->
-                <!-- </Entry.Triggers> -->
+                <Entry.Triggers>
+                    <DataTrigger TargetType="Entry"
+                             Binding="{Binding Name.Length}"
+                             Value="5">
+                        <Setter Property="BackgroundColor" Value="LightBlue" />
+                        <Setter Property="TextColor" Value="Green"/>
+                    </DataTrigger>
+                </Entry.Triggers>
             </Entry>
             <Label Text="{Binding Name, StringFormat='Welcome {0}'}"
                    IsVisible="{Binding Name,

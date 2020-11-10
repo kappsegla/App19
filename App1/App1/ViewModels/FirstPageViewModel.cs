@@ -16,7 +16,7 @@ namespace App1.ViewModels
         {
             BatteryLevel = essentials.BatteryLevel;
             DoNavigation = new Command(async () =>
-            { 
+            {
                 await navigation.PushAsync(new SecondPage());
             });
         }
