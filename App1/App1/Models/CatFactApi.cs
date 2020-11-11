@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using App1.Utils;
@@ -40,6 +41,7 @@ namespace App1.Models
          
         public async Task<IEnumerable<CatFact>> GetCatFactsAsync()
         {
+            IEnumerable<string> v;
             //Connect to api
             //We can use await on any method returning Task or Task<>
             var response = await _client.GetAsync(uriAll);

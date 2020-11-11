@@ -6,7 +6,6 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 //[assembly: XamlCompilation(XamlCompilationOptions.Compile)]
-
 namespace App1
 {
     public partial class App : Application
@@ -22,9 +21,10 @@ namespace App1
             
             //MainPage = new MainPage();
             //MainPage = new NavigationPage(new ItemsPage());
-            MainPage = new ValidationPage();
+            //MainPage = new ValidationPage();
             //MainPage = new NavigationPage (new FirstPage());
             //MainPage = new AppShell();
+            MainPage = new TemperaturePage();
         }
 
         protected override void OnStart()

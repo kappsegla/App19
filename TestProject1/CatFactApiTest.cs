@@ -43,7 +43,7 @@ namespace TestProject1
 
             var fact = await unit.GetRandomCatFact();
 
-            Assert.AreEqual("This is a fact!",fact.Text);
+            Assert.AreEqual("This is a fact!",fact.Successful.Item1);
         }
         
     }

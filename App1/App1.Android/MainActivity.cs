@@ -1,9 +1,5 @@
-﻿using System;
-using Android.App;
+﻿using Android.App;
 using Android.Content.PM;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Android.OS;
 using App1.Android.Bootstrap;
 
@@ -20,11 +16,12 @@ namespace App1.Android
 
             base.OnCreate(savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
-            Xamarin.Essentials.Platform.Init(this, savedInstanceState); 
+            Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             LoadApplication(new App(new AndroidSetup()));
         }
-        
-        public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
+
+        public override void OnRequestPermissionsResult(int requestCode, string[] permissions,
+            Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 

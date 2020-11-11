@@ -5,7 +5,7 @@
         public Result(T data) => Successful = (true, data);
         public Result(E data) => Error      = (true, data);
  
-        public (bool, T) Successful { get; }
-        public (bool, E) Error      { get; }
+        public (bool success, T Value) Successful { get; }
+        public (bool error, E Msg) Error      { get; }
     }
 }

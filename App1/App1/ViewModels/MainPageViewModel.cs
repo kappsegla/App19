@@ -24,11 +24,11 @@ namespace App1.ViewModels
                 IsBusy = true;
                 var fact = await _catFactApi.GetRandomCatFact();
                 
-                if( fact.Successful.Item1 )
-                    Text = fact.Successful.Item2.Text;
+                if( fact.Successful.success )
+                    Text = fact.Successful.Value.Text;
                 else
                 {
-                    var error = fact.Error.Item2;
+                    var error = fact.Error.error;
                     
                 }
                 IsBusy = false;
